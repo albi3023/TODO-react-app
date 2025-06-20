@@ -2,6 +2,7 @@ import { Box, Checkbox } from "@mui/material";
 import React from "react";
 import Delete from "../../assets/delete.svg";
 import Edit from "../../assets/edit.svg";
+import NoTask from "../../assets/no-task.svg";
 import "./taskColumn.css";
 
 const TaskColumn = ({
@@ -10,9 +11,8 @@ const TaskColumn = ({
   checkedItems,
   setCheckedItems,
   onDelete,
+  onEdit,
 }) => {
-  //   const [checkedItems, setCheckedItems] = React.useState({});
-
   const handleChange = (id) => (event) => {
     setCheckedItems((prev) => ({
       ...prev,
@@ -29,36 +29,47 @@ const TaskColumn = ({
 
   return (
     <Box className="taskColumn">
-      {filteredContent?.map((item) => (
-        <div
-          key={item.id}
-          className={`taskItem ${checkedItems[item.id] ? "completed" : ""}`}
-        >
-          <div className="taskSection">
-            <Checkbox
-              checked={!!checkedItems[item.id]}
-              onChange={handleChange(item.id)}
-            />
-            <div
-              className={`taskContent ${
-                checkedItems[item.id] ? "completed" : ""
-              }`}
-            >
-              <div className="content">{item.title}</div>
-              <div className="timestamp">{item.timestamp}</div>
+      {filteredContent.length > 0 ? (
+        filteredContent.map((item) => (
+          <div
+            key={item.id}
+            className={`taskItem ${checkedItems[item.id] ? "completed" : ""}`}
+          >
+            <div className="taskSection">
+              <Checkbox
+                checked={!!checkedItems[item.id]}
+                onChange={handleChange(item.id)}
+              />
+              <div
+                className={`taskContent ${
+                  checkedItems[item.id] ? "completed" : ""
+                }`}
+              >
+                <div className="content">{item.title}</div>
+                <div className="timestamp">{item.timestamp}</div>
+              </div>
+            </div>
+            <div className="optionBtns">
+              <img
+                className="deleteBtn"
+                src={Delete}
+                alt="Delete"
+                onClick={() => onDelete(item.id)}
+              />
+              <img
+                className="editBtn"
+                src={Edit}
+                alt="Edit"
+                onClick={() => onEdit(item)}
+              />
             </div>
           </div>
-          <div className="optionBtns">
-            <img
-              className="deleteBtn"
-              src={Delete}
-              alt="Delete"
-              onClick={() => onDelete(item.id)}
-            />
-            <img className="editBtn" src={Edit} alt="Edit" />
-          </div>
+        ))
+      ) : (
+        <div className="noTasksContainer">
+          <img className="noTasks" src={NoTask} alt="No tasks available" />
         </div>
-      ))}
+      )}
     </Box>
   );
 };

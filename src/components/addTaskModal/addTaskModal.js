@@ -1,11 +1,5 @@
 import React, { useState } from "react";
-import {
-  Modal,
-  Box,
-  Button,
-  TextField,
-  Typography,
-} from "@mui/material";
+import { Modal, Box, Button, TextField, Typography } from "@mui/material";
 
 const modalStyle = {
   position: "absolute",
@@ -19,8 +13,12 @@ const modalStyle = {
   p: 4,
 };
 
-const AddTaskModal = ({ open, handleClose, handleSave }) => {
-  const [taskTitle, setTaskTitle] = useState("");
+const AddTaskModal = ({ open, handleClose, handleSave, initialValue = "" }) => {
+  const [taskTitle, setTaskTitle] = useState(initialValue);
+
+  React.useEffect(() => {
+    setTaskTitle(initialValue);
+  }, [initialValue]);
 
   const handleSubmit = () => {
     if (taskTitle.trim()) {
@@ -29,12 +27,15 @@ const AddTaskModal = ({ open, handleClose, handleSave }) => {
       handleClose();
     }
   };
-
+  const handleCancel = () => {
+    handleClose();
+    setTaskTitle("");
+  };
   return (
     <Modal open={open} onClose={handleClose}>
       <Box sx={modalStyle}>
         <Typography variant="h6" mb={2}>
-          Add New Task
+          {initialValue ? "Edit Task" : "Add New Task"}{" "}
         </Typography>
         <TextField
           fullWidth
@@ -44,7 +45,7 @@ const AddTaskModal = ({ open, handleClose, handleSave }) => {
           autoFocus
         />
         <Box mt={3} display="flex" justifyContent="flex-end" gap={2}>
-          <Button variant="outlined" onClick={handleClose}>
+          <Button variant="outlined" onClick={handleCancel}>
             Cancel
           </Button>
           <Button variant="contained" onClick={handleSubmit}>

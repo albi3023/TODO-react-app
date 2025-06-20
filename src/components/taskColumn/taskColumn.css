@@ -1,11 +1,14 @@
 .taskColumn {
-  background-color: #ecedf6;
   padding: 3%;
+  max-height: 75vh;
+  overflow-y: auto;
+  border-radius: 10px;
+  padding-bottom: 30px;
 }
 .taskItem {
   display: flex;
   background-color: #ffffff;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
   justify-content: space-between;
   min-height: 80px;
 }
@@ -43,4 +46,11 @@
 .taskContent.completed .content {
   text-decoration: line-through;
   opacity: 0.8;
+}
+.noTasks {
+  height: 30vh;
+}
+.noTasksContainer {
+  display: flex;
+  justify-content: center;
 }
