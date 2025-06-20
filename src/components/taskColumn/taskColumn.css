@@ -1,0 +1,46 @@
+.taskColumn {
+  background-color: #ecedf6;
+  padding: 3%;
+}
+.taskItem {
+  display: flex;
+  background-color: #ffffff;
+  margin-bottom: 10px;
+  justify-content: space-between;
+  min-height: 80px;
+}
+.taskItem:last-child {
+  margin-bottom: 0px;
+}
+.taskSection {
+  display: flex;
+}
+.taskContent {
+  align-content: center;
+  margin-left: 10px;
+}
+.optionBtns {
+  align-content: center;
+  gap: 5px;
+  margin-right: 3px;
+}
+.content {
+  margin-bottom: 10px;
+  max-width: 75vw;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.deleteBtn,
+.editBtn {
+  background-color: #efefef;
+  padding: 5px;
+  height: 30px;
+  margin-right: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+.taskContent.completed .content {
+  text-decoration: line-through;
+  opacity: 0.8;
+}

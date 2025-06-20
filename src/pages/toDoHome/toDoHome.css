@@ -1,0 +1,21 @@
+.toDoHome {
+  background-color: #f8f9ff;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.toDoHomeSection {
+  width: 80%;
+}
+.title {
+  font-size: 50px;
+  color: #696885;
+  text-align: center;
+  margin-bottom: 5%;
+}
+.homeMenu {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 3%;
+}
